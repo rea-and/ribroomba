@@ -1,0 +1,33 @@
+{
+  "originHash" : "e2547e27bd323a0c4a813b4d7fd12c9199bb9ddf12980c6d1254be902902cab3",
+  "pins" : [
+    {
+      "identity" : "needle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uber/needle.git",
+      "state" : {
+        "revision" : "69f7a889d2736f2621c6083ac29e0a75d158f249",
+        "version" : "0.25.1"
+      }
+    },
+    {
+      "identity" : "ribs-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uber/RIBs-iOS.git",
+      "state" : {
+        "revision" : "bc4abbc25f485bff1c1955994a19d5104b209f08",
+        "version" : "0.16.3"
+      }
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift.git",
+      "state" : {
+        "revision" : "5dd1907d64f0d36f158f61a466bab75067224893",
+        "version" : "6.9.0"
+      }
+    }
+  ],
+  "version" : 3
+}

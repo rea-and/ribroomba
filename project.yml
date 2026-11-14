@@ -1,0 +1,86 @@
+name: RibRoomba
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: '16.0'
+  createIntermediateGroups: true
+configFiles:
+  Debug: Config/Base.xcconfig
+  Release: Config/Base.xcconfig
+settings:
+  base:
+    CODE_SIGN_STYLE: Automatic
+    # The Simulator never needs a development team; physical devices do (see Config/Local.xcconfig.example).
+    CODE_SIGNING_ALLOWED[sdk=iphonesimulator*]: NO
+    CODE_SIGNING_REQUIRED[sdk=iphonesimulator*]: NO
+packages:
+  RIBs:
+    url: https://github.com/uber/RIBs-iOS.git
+    exactVersion: 0.16.3
+  Needle:
+    url: https://github.com/uber/needle.git
+    exactVersion: 0.25.1
+  RxSwift:
+    url: https://github.com/ReactiveX/RxSwift.git
+    exactVersion: 6.9.0
+targets:
+  RibRoomba:
+    type: application
+    platform: iOS
+    sources: [RibRoomba]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.RibRoomba
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_CFBundleDisplayName: RibRoomba
+        TARGETED_DEVICE_FAMILY: 1
+        SWIFT_VERSION: 5.0
+    dependencies:
+      - package: RIBs
+        product: RIBs
+      - package: Needle
+        product: NeedleFoundation
+      - package: RxSwift
+        product: RxSwift
+      - package: RxSwift
+        product: RxRelay
+  RibRoombaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [RibRoombaTests]
+    dependencies:
+      - target: RibRoomba
+      - package: RxSwift
+        product: RxSwift
+      - package: RxSwift
+        product: RxRelay
+      - package: RxSwift
+        product: RxBlocking
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.RibRoombaTests
+        SWIFT_VERSION: 5.0
+  RibRoombaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [RibRoombaUITests]
+    dependencies:
+      - target: RibRoomba
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.RibRoombaUITests
+        SWIFT_VERSION: 5.0
+schemes:
+  RibRoomba:
+    build:
+      targets:
+        RibRoomba: all
+        RibRoombaTests: [test]
+        RibRoombaUITests: [test]
+    test:
+      targets: [RibRoombaTests, RibRoombaUITests]
